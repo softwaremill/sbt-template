@@ -20,4 +20,3 @@ lazy val core: Project = (project in file("core"))
       scalaTest
     )
   )
-
