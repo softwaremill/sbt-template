@@ -22,6 +22,7 @@ lazy val tradingHelloServiceApi: Project = (project in file("trading-hello-servi
 lazy val tradingHelloService: Project = (project in file("trading-hello-service"))
   .settings(commonSettings: _*)
   .settings(
+    publishArtifact := false,
     name := "trading-hello-service",
     libraryDependencies ++= Libraries.logging ++ Libraries.cats ++ Libraries.grpc ++ Libraries.test ++ Seq(
       Libraries.pureConfig

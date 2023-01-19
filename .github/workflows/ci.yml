@@ -36,4 +36,4 @@ jobs:
           NEXUS_CREDENTIALS: ${{ secrets.NEXUS_CREDENTIALS }}
         run: |
           echo "$NEXUS_CREDENTIALS" > ~/.sbt/.credentials_sml_nexus
-          sbt "project tradingHelloServiceApi" publish
+          sbt publish
