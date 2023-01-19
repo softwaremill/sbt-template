@@ -12,3 +12,6 @@ project/boot/
 project/plugins/project/
 
 .idea*
+
+# Nexus credentials configuration
+nexus.sbt
