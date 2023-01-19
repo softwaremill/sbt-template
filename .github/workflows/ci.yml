@@ -23,7 +23,6 @@ jobs:
       - name: Display versions
         run: |
           java -version
-          scala -version
           sbt --version
 
       - name: Launch tests
