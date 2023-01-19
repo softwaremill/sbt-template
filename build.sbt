@@ -24,22 +24,23 @@ lazy val tradingHelloService: Project = (project in file("trading-hello-service"
   .settings(
     name := "trading-hello-service",
     libraryDependencies ++= Libraries.logging ++ Libraries.cats ++ Libraries.grpc ++ Libraries.test ++ Seq(
-      // Libraries.helloServiceApi, // don't pull reruired project from Nexus
       Libraries.pureConfig
     )
   )
-  .dependsOn(tradingHelloServiceApi) // build required project instead of pulling it from Nexus
+  .dependsOn(tradingHelloServiceApi)
 
 // Nexus configuration
+credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus")
+
 publishTo := {
-  val nexus = "https://nexus3.softwaremill.com/"
+  val nexus = "https://nexus3.softwaremill.com/repository/"
   if (isSnapshot.value)
-    Some("snapshots" at nexus + "repository/scala-academy-snapshots/")
+    Some("snapshots" at nexus + "scala-academy-snapshots/")
   else
-    Some("releases"  at nexus + "repository/scala-academy-release/")
+    Some("releases"  at nexus + "scala-academy-releases/")
 }
 
 resolvers ++= Seq(
   "SoftwareMill Snapshots" at "https://nexus3.softwaremill.com/repository/scala-academy-snapshots/",
-  "SoftwareMill Releases" at "https://nexus3.softwaremill.com/repository/scala-academy-release/"
+  "SoftwareMill Releases" at "https://nexus3.softwaremill.com/repository/scala-academy-releases/"
 )
