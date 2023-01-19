@@ -3,7 +3,19 @@ import Dependencies._
 
 lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   organization := "com.softwaremill.academy.trading.hello",
-  scalaVersion := "2.13.10"
+  scalaVersion := "2.13.10",
+  credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus"),
+  publishTo := {
+    val nexus = "https://nexus3.softwaremill.com/repository/"
+    if (isSnapshot.value)
+      Some("snapshots" at nexus + "scala-academy-snapshots/")
+    else
+      Some("releases"  at nexus + "scala-academy-releases/")
+  },
+  resolvers ++= Seq(
+    "SoftwareMill Snapshots" at "https://nexus3.softwaremill.com/repository/scala-academy-snapshots/",
+    "SoftwareMill Releases" at "https://nexus3.softwaremill.com/repository/scala-academy-releases/"
+  )
 )
 
 lazy val rootProject = (project in file("."))
@@ -29,19 +41,3 @@ lazy val tradingHelloService: Project = (project in file("trading-hello-service"
     )
   )
   .dependsOn(tradingHelloServiceApi)
-
-// Nexus configuration
-credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus")
-
-publishTo := {
-  val nexus = "https://nexus3.softwaremill.com/repository/"
-  if (isSnapshot.value)
-    Some("snapshots" at nexus + "scala-academy-snapshots/")
-  else
-    Some("releases"  at nexus + "scala-academy-releases/")
-}
-
-resolvers ++= Seq(
-  "SoftwareMill Snapshots" at "https://nexus3.softwaremill.com/repository/scala-academy-snapshots/",
-  "SoftwareMill Releases" at "https://nexus3.softwaremill.com/repository/scala-academy-releases/"
-)
