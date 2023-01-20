@@ -41,3 +41,9 @@ lazy val tradingHelloService: Project = (project in file("trading-hello-service"
     )
   )
   .dependsOn(tradingHelloServiceApi)
+
+// SBT Native Packager
+enablePlugins(JavaServerAppPackaging, DockerPlugin)
+dockerBaseImage := "eclipse-temurin:17.0.5_8-jre-centos7"
+dockerUpdateLatest := false
+dockerBuildxPlatforms := Seq("linux/arm64/v8", "linux/amd64")
