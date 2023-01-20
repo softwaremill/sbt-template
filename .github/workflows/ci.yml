@@ -37,7 +37,7 @@ jobs:
           sbt publish
 
       - name: Log in to Azure ACR
-        # if: github.ref == 'refs/heads/master' # TODO: uncomment after tests on branch
+        if: github.ref == 'refs/heads/master'
         uses: azure/docker-login@v1
         with:
           login-server: smlacademyacr.azurecr.io
@@ -45,5 +45,6 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build and Push Docker Image
+        if: github.ref == 'refs/heads/master'
         working-directory: .
         run: sbt docker:publish
