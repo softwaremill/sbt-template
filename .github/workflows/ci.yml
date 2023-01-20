@@ -40,7 +40,7 @@ jobs:
         # if: github.ref == 'refs/heads/master' # TODO: uncomment after tests on branch
         uses: azure/docker-login@v1
         with:
-          login-server: smlacademyacr
+          login-server: smlacademyacr.azurecr.io
           username: ${{ secrets.ACR_USER }}
           password: ${{ secrets.ACR_PASSWORD }}
 
