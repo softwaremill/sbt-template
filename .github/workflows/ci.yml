@@ -36,11 +36,12 @@ jobs:
           echo "${{ secrets.NEXUS_CREDENTIALS }}" | base64 -d > ~/.sbt/.credentials_sml_nexus
           sbt publish
 
-      - name: Log in to Azure
-        uses: azure/login@v1
+      - name: Log in to Azure ACR
+        # if: github.ref == 'refs/heads/master' # TODO: uncomment after tests on branch
+        uses: azure/docker-login@v1
+        working-directory: .
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          run: |
-            az account show
-            az acr login -n smlacademyacr
-            az acr list
+          login-server: smlacademyacr
+          username: ${{ secrets.ACR_USER }}
+          password: ${{ secrets.ACR_PASSWORD }}
+        run: sbt docker:publish
