@@ -30,10 +30,8 @@ jobs:
         run: sbt -v test
 
       - name: Push to Repository
-        if: github.ref == 'refs/heads/master'
+        # if: github.ref == 'refs/heads/master' # TODO: unhash after test
         working-directory: .
-        env:
-          NEXUS_CREDENTIALS: ${{ secrets.NEXUS_CREDENTIALS }}
         run: |
-          echo "$NEXUS_CREDENTIALS" > ~/.sbt/.credentials_sml_nexus
+          echo "${{ secrets.NEXUS_CREDENTIALS }}" | base64 -d > ~/.sbt/.credentials_sml_nexus
           sbt publish
