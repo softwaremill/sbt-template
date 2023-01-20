@@ -26,7 +26,8 @@ lazy val noPublishSettings = Seq(
 lazy val dockerSettings = Seq(
   dockerBaseImage := "eclipse-temurin:17.0.5_8-jre",
   dockerUpdateLatest := false,
-  dockerBuildxPlatforms := Seq("linux/arm64/v8", "linux/amd64")
+  dockerBuildxPlatforms := Seq("linux/arm64/v8", "linux/amd64"),
+  Docker / packageName := "smlacademyacr/trading-hello-service"
 )
 
 lazy val dockerNoPublishSettings = Seq(
