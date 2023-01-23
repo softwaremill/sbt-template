@@ -18,13 +18,32 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   )
 )
 
+lazy val noPublishSettings = Seq(
+  publish := {},
+  publishLocal := {}
+)
+
+lazy val dockerSettings = Seq(
+  dockerBaseImage := "eclipse-temurin:17.0.5_8-jre",
+  dockerUpdateLatest := false,
+  Docker / packageName := "smlacademyacr.azurecr.io/trading-hello-service"
+)
+
+lazy val dockerNoPublishSettings = Seq(
+    Docker / publishLocal := {},
+    Docker / publish := {},
+)
+
 lazy val rootProject = (project in file("."))
   .settings(commonSettings: _*)
-  .settings(publishArtifact := false, name := "trading-hello")
+  .settings(noPublishSettings: _*)
+  .settings(dockerNoPublishSettings: _*)
+  .settings(name := "trading-hello")
   .aggregate(tradingHelloServiceApi, tradingHelloService)
 
 lazy val tradingHelloServiceApi: Project = (project in file("trading-hello-service-api"))
   .settings(commonSettings: _*)
+  .settings(dockerNoPublishSettings: _*)
   .settings(
     name := "trading-hello-service-api",
     libraryDependencies += Libraries.grpcNetty
@@ -32,9 +51,11 @@ lazy val tradingHelloServiceApi: Project = (project in file("trading-hello-servi
   .enablePlugins(Fs2Grpc)
 
 lazy val tradingHelloService: Project = (project in file("trading-hello-service"))
+  .enablePlugins(JavaServerAppPackaging, DockerPlugin)
   .settings(commonSettings: _*)
+  .settings(noPublishSettings: _*)
+  .settings(dockerSettings: _*)
   .settings(
-    publishArtifact := false,
     name := "trading-hello-service",
     libraryDependencies ++= Libraries.logging ++ Libraries.cats ++ Libraries.grpc ++ Libraries.test ++ Seq(
       Libraries.pureConfig

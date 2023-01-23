@@ -32,8 +32,19 @@ jobs:
       - name: Push to Repository
         if: github.ref == 'refs/heads/master'
         working-directory: .
-        env:
-          NEXUS_CREDENTIALS: ${{ secrets.NEXUS_CREDENTIALS }}
         run: |
-          echo "$NEXUS_CREDENTIALS" > ~/.sbt/.credentials_sml_nexus
+          echo "${{ secrets.NEXUS_CREDENTIALS }}" | base64 -d > ~/.sbt/.credentials_sml_nexus
           sbt publish
+
+      - name: Log in to Azure ACR
+        if: github.ref == 'refs/heads/master'
+        uses: azure/docker-login@v1
+        with:
+          login-server: smlacademyacr.azurecr.io
+          username: ${{ secrets.ACR_USER }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and Push Docker Image
+        if: github.ref == 'refs/heads/master'
+        working-directory: .
+        run: sbt docker:publish
