@@ -35,6 +35,11 @@ object Dependencies {
     val grpcNetty = "io.grpc" % "grpc-netty-shaded" % scalapb.compiler.Version.grpcJavaVersion
     val grpcServices = "io.grpc" % "grpc-services" % V.grpcServices
     val grpc = Seq(grpcNetty, grpcServices)
+    val grpcScalaPB =
+      Seq(
+        "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0" % "protobuf",
+        "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"
+      )
 
     val scalatest = "org.scalatest" %% "scalatest" % V.scalatest
 

@@ -18,6 +18,10 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   )
 )
 
+lazy val commonScalapbSettings = Seq(
+  Compile / PB.protoSources += PB.externalIncludePath.value
+)
+
 lazy val rootProject = (project in file("."))
   .settings(commonSettings: _*)
   .settings(publishArtifact := false, name := "trading-hello")
@@ -25,9 +29,10 @@ lazy val rootProject = (project in file("."))
 
 lazy val tradingHelloServiceApi: Project = (project in file("trading-hello-service-api"))
   .settings(commonSettings: _*)
+  .settings(commonScalapbSettings: _*)
   .settings(
     name := "trading-hello-service-api",
-    libraryDependencies += Libraries.grpcNetty
+    libraryDependencies ++= Seq(Libraries.grpcNetty) ++ Libraries.grpcScalaPB
   )
   .enablePlugins(Fs2Grpc)
 
