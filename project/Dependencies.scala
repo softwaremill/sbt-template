@@ -3,17 +3,19 @@ import sbt._
 object Dependencies {
 
   object V {
+    val cats = "2.9.0"
+
+    val catsEffect = "3.4.3"
+
+    val grpcServices = "1.51.1"
+
     val helloServiceApi = "0.1-SNAPSHOT"
 
-    val scalaLogging = "3.9.4"
     val logback = "1.4.5"
-
-    val cats = "2.9.0"
-    val catsEffect = "3.4.3"
 
     val pureConfig = "0.17.2"
 
-    val grpcServices = "1.51.1"
+    val scalaLogging = "3.9.4"
 
     val scalatest = "3.2.14"
   }
