@@ -46,7 +46,7 @@ lazy val tradingHelloServiceApi: Project = (project in file("trading-hello-servi
   .settings(dockerNoPublishSettings: _*)
   .settings(
     name := "trading-hello-service-api",
-    libraryDependencies += Libraries.grpcNetty
+    libraryDependencies ++= Libraries.grpcNetty +: Libraries.scalapbCommonProtos
   )
   .enablePlugins(Fs2Grpc)
 
