@@ -7,6 +7,8 @@ object Dependencies {
 
     val catsEffect = "3.4.3"
 
+    val commonProtos = "2.9.6-0"
+
     val grpcServices = "1.51.1"
 
     val helloServiceApi = "0.1-SNAPSHOT"
@@ -33,6 +35,12 @@ object Dependencies {
     val cats = Seq(catsCore, catsEffect)
 
     val pureConfig = "com.github.pureconfig" %% "pureconfig" % V.pureConfig
+
+    // https://scalapb.github.io/docs/third-party-protos/#common-protos-maybe-a-scala-package-for-the-protos-already-exists
+    val scalapbCommonProtos = Seq(
+      "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % V.commonProtos % "protobuf",
+      "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % V.commonProtos
+    )
 
     val grpcNetty = "io.grpc" % "grpc-netty-shaded" % scalapb.compiler.Version.grpcJavaVersion
     val grpcServices = "io.grpc" % "grpc-services" % V.grpcServices
