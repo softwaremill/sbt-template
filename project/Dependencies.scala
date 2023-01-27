@@ -19,7 +19,7 @@ object Dependencies {
 
     val scalaLogging = "3.9.4"
 
-    val scalatest = "3.2.14"
+    val scalatest = "3.2.15"
   }
 
   object Libraries {
