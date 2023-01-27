@@ -5,7 +5,7 @@ object Dependencies {
   object V {
     val cats = "2.9.0"
 
-    val catsEffect = "3.4.3"
+    val catsEffect = "3.4.5"
 
     val commonProtos = "2.9.6-0"
 
