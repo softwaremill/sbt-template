@@ -9,7 +9,7 @@ object Dependencies {
 
     val commonProtos = "2.9.6-0"
 
-    val grpcServices = "1.51.3"
+    val grpcServices = "1.52.1"
 
     val helloServiceApi = "0.1-SNAPSHOT"
 
