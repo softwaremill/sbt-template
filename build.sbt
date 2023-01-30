@@ -10,7 +10,7 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
     if (isSnapshot.value)
       Some("snapshots" at nexus + "scala-academy-snapshots/")
     else
-      Some("releases"  at nexus + "scala-academy-releases/")
+      Some("releases" at nexus + "scala-academy-releases/")
   },
   resolvers ++= Seq(
     "SoftwareMill Snapshots" at "https://nexus3.softwaremill.com/repository/scala-academy-snapshots/",
@@ -30,8 +30,8 @@ lazy val dockerSettings = Seq(
 )
 
 lazy val dockerNoPublishSettings = Seq(
-    Docker / publishLocal := {},
-    Docker / publish := {},
+  Docker / publishLocal := {},
+  Docker / publish := {}
 )
 
 lazy val rootProject = (project in file("."))
