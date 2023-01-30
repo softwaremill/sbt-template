@@ -1,10 +1,11 @@
 name: Slack Notification
 
 on:
-  workflows: [CI/CD]
-  types:
-    - completed
-  branches: [master]
+  workflow_run:
+    workflows: [CI/CD]
+    types:
+      - completed
+    branches: [master]
 
 jobs:
   on-failure:
