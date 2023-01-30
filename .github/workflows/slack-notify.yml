@@ -1,0 +1,22 @@
+name: Slack Notification
+
+on:
+  workflows: [CI/CD]
+  types:
+    - completed
+  branches: [master]
+
+jobs:
+  on-failure:
+    name: Notify on Slack
+    runs-on: ubuntu-22.04
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+    - name: Post to a Slack channel
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        channel-id: ${{ env.SLACK_NOTIFICATIONS_CHANNEL }}
+        slack-message: "The CI/CD workflow failed, see ${{ github.event.workflow_run.url }}"
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
