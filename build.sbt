@@ -4,7 +4,7 @@ import Dependencies._
 lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   organization := "com.softwaremill.academy.trading.hello",
   scalaVersion := "2.13.10",
-  credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus"),
+  credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus_test_failed_build_notification"),
   publishTo := {
     val nexus = "https://nexus3.softwaremill.com/repository/"
     if (isSnapshot.value)
