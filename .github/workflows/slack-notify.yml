@@ -18,6 +18,6 @@ jobs:
       uses: slackapi/slack-github-action@v1.23.0
       with:
         channel-id: ${{ vars.SLACK_NOTIFICATIONS_CHANNEL }}
-        slack-message: "The CI/CD workflow failed, see ${{ github.event.workflow_run.url }}"
+        slack-message: "The CI/CD workflow failed, see ${{ github.event.workflow_run.html_url }}"
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
