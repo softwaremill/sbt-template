@@ -1,6 +1,6 @@
 package com.softwaremill.academy.trading.hello
 
-import cats.effect.{Async, Resource}
+import cats.effect.{ Async, Resource }
 import com.softwaremill.academy.trading.hello.api.HelloServiceFs2Grpc
 import fs2.grpc.syntax.all._
 import io.grpc.Metadata

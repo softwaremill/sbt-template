@@ -2,7 +2,7 @@ package com.softwaremill.academy.trading.hello.grpc
 
 import cats.effect.kernel.Async
 import cats.syntax.functor._
-import com.softwaremill.academy.trading.hello.api.{HelloRequest, HelloResponse, HelloServiceFs2Grpc}
+import com.softwaremill.academy.trading.hello.api.{ HelloRequest, HelloResponse, HelloServiceFs2Grpc }
 import com.softwaremill.academy.trading.hello.domain.HelloService
 import io.grpc.Metadata
 
