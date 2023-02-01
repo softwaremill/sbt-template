@@ -25,6 +25,10 @@ jobs:
           java -version
           sbt --version
 
+      - name: Check formatting
+        working-directory: .
+        run: sbt scalafmtCheckAll
+
       - name: Launch tests
         working-directory: .
         run: sbt -v test
