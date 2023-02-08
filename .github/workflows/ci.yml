@@ -25,6 +25,11 @@ jobs:
           java -version
           sbt --version
 
+      - name: Set Nexus credentials
+        working-directory: .
+        run: |
+          echo "${{ secrets.NEXUS_CREDENTIALS }}" | base64 -d > ~/.sbt/.credentials_sml_nexus
+
       - name: Check formatting
         working-directory: .
         run: sbt scalafmtCheckAll
@@ -37,7 +42,6 @@ jobs:
         if: github.ref == 'refs/heads/master'
         working-directory: .
         run: |
-          echo "${{ secrets.NEXUS_CREDENTIALS }}" | base64 -d > ~/.sbt/.credentials_sml_nexus
           sbt publish
 
       - name: Log in to Azure ACR
