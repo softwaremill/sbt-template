@@ -12,6 +12,7 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
     else
       Some("releases" at nexus + "scala-academy-releases/")
   },
+  Compile / packageDoc / publishArtifact := false,
   resolvers ++= Seq(
     "SoftwareMill Snapshots" at "https://nexus3.softwaremill.com/repository/scala-academy-snapshots/",
     "SoftwareMill Releases" at "https://nexus3.softwaremill.com/repository/scala-academy-releases/"
