@@ -8,8 +8,7 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   scalaVersion := "2.13.10",
   credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus"),
   csrConfiguration := csrConfiguration.value
-    .withTtl(Some(1.minute))
-    .withCachePolicies(Vector(CachePolicy.LocalOnly)),
+    .withTtl(Some(1.minute)),
   publishTo := {
     val nexus = "https://nexus3.softwaremill.com/repository/"
     if (isSnapshot.value)
