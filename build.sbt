@@ -1,10 +1,15 @@
 import com.softwaremill.SbtSoftwareMillCommon.commonSmlBuildSettings
+import lmcoursier.definitions.CachePolicy
 import Dependencies._
+import scala.concurrent.duration._
 
 lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   organization := "com.softwaremill.academy.trading.hello",
   scalaVersion := "2.13.10",
   credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus"),
+  csrConfiguration := csrConfiguration.value
+    .withTtl(Some(1.minute))
+    .withCachePolicies(Vector(CachePolicy.LocalOnly)),
   publishTo := {
     val nexus = "https://nexus3.softwaremill.com/repository/"
     if (isSnapshot.value)
@@ -20,19 +25,19 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
 )
 
 lazy val noPublishSettings = Seq(
-  publish := {},
+  publish      := {},
   publishLocal := {}
 )
 
 lazy val dockerSettings = Seq(
-  dockerBaseImage := "eclipse-temurin:17.0.5_8-jre",
-  dockerUpdateLatest := false,
+  dockerBaseImage      := "eclipse-temurin:17.0.5_8-jre",
+  dockerUpdateLatest   := false,
   Docker / packageName := "smlacademyacr.azurecr.io/trading-hello-service"
 )
 
 lazy val dockerNoPublishSettings = Seq(
   Docker / publishLocal := {},
-  Docker / publish := {}
+  Docker / publish      := {}
 )
 
 lazy val rootProject = (project in file("."))
