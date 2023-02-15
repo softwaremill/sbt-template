@@ -3,6 +3,8 @@
 
 .cache
 .history
+.env
+.envrc
 .lib/
 dist/*
 target/
