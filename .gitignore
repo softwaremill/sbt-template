@@ -2,6 +2,8 @@
 *.log
 
 .cache
+.env
+.envrc
 .history
 .lib/
 dist/*
@@ -12,3 +14,10 @@ project/boot/
 project/plugins/project/
 
 .idea*
+
+# Metals
+.metals/
+.bsp/
+.bloop/
+metals.sbt
+.vscode
