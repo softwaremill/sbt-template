@@ -20,8 +20,6 @@ object Dependencies {
     val scalaLogging = "3.9.5"
 
     val scalatest = "3.2.15"
-
-    val silencer = "1.7.12"
   }
 
   object Libraries {
@@ -42,11 +40,6 @@ object Dependencies {
     val scalapbCommonProtos = Seq(
       "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % V.commonProtos % "protobuf",
       "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % V.commonProtos
-    )
-
-    val silencer = Seq(
-      compilerPlugin("com.github.ghik" % "silencer-plugin" % V.silencer cross CrossVersion.full),
-      "com.github.ghik" % "silencer-lib" % V.silencer % Provided cross CrossVersion.full
     )
 
     val grpcNetty    = "io.grpc" % "grpc-netty-shaded" % scalapb.compiler.Version.grpcJavaVersion

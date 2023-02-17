@@ -14,9 +14,8 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
       current :+ "-Wconf:cat=other-match-analysis:error"
     else current
   },
-  ThisBuild / libraryDependencies ++= Libraries.silencer,
   // Silence warnings for generated code
-  scalacOptions += "-P:silencer:pathFilters=src_managed",
+  scalacOptions += "-Wconf:src=src_managed/.*:s",
   credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus"),
   csrConfiguration := csrConfiguration.value
     .withTtl(Some(1.minute)),
