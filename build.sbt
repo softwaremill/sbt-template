@@ -1,11 +1,22 @@
 import com.softwaremill.SbtSoftwareMillCommon.commonSmlBuildSettings
-import lmcoursier.definitions.CachePolicy
 import Dependencies._
 import scala.concurrent.duration._
 
 lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   organization := "com.softwaremill.academy.trading.hello",
   scalaVersion := "2.13.10",
+  // use sbt-tpolecat, but without fatal warnings
+  scalacOptions ~= (_.filterNot(Set("-Xfatal-warnings"))),
+  // when using 2.13, fail on non-exhaustive matches
+  scalacOptions := {
+    val current = scalacOptions.value
+    if (scalaVersion.value.startsWith("2.13"))
+      current :+ "-Wconf:cat=other-match-analysis:error"
+    else current
+  },
+  ThisBuild / libraryDependencies ++= Libraries.silencer,
+  // Silence warnings for generated code
+  scalacOptions += "-P:silencer:pathFilters=src_managed",
   credentials += Credentials(Path.userHome / ".sbt" / ".credentials_sml_nexus"),
   csrConfiguration := csrConfiguration.value
     .withTtl(Some(1.minute)),
