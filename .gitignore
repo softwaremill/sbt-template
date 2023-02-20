@@ -1,7 +1,6 @@
 *.class
 *.log
 
-.bsp
 .cache
 .env
 .envrc
