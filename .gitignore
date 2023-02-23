@@ -9,6 +9,7 @@
 dist/*
 target/
 lib_managed/
+local.conf
 src_managed/
 project/boot/
 project/plugins/project/
