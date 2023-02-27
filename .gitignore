@@ -5,6 +5,7 @@
 .env
 .envrc
 .history
+.sdkmanrc
 .lib/
 dist/*
 target/
