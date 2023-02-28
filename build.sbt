@@ -1,6 +1,7 @@
 import com.softwaremill.SbtSoftwareMillCommon.commonSmlBuildSettings
 import Dependencies._
 import scala.concurrent.duration._
+import ReleaseTransformations._
 
 lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   organization := "com.softwaremill.academy.trading.hello",
@@ -32,6 +33,26 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
     "SoftwareMill Releases" at "https://nexus3.softwaremill.com/repository/scala-academy-releases/"
   )
 )
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  dockerPublish,
+  setNextVersion,
+  commitNextVersion,
+  pushChanges
+)
+
+lazy val dockerPublish: ReleaseStep = { st: State =>
+  val extracted = Project.extract(st)
+  val ref       = extracted.get(thisProjectRef)
+  extracted.runAggregated(ref / Docker / publish, st)
+}
 
 lazy val noPublishSettings = Seq(
   publish      := {},
