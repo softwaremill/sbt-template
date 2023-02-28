@@ -41,12 +41,6 @@ jobs:
         working-directory: .
         run: sbt -v test
 
-      - name: Push to Repository
-        if: github.ref == 'refs/heads/master'
-        working-directory: .
-        run: |
-          sbt publish
-
       - name: Log in to Azure ACR
         if: github.ref == 'refs/heads/master'
         uses: azure/docker-login@v1
@@ -55,7 +49,10 @@ jobs:
           username: ${{ secrets.ACR_USER }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-      - name: Build and Push Docker Image
+      - name: Release to Nexus and ACR
         if: github.ref == 'refs/heads/master'
         working-directory: .
-        run: sbt docker:publish
+        run: |
+          git config --local user.name "sbt-release"
+          git config --local user.email "sbt-release"
+          sbt "release with-defaults"
