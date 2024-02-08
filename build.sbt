@@ -5,7 +5,7 @@ lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   scalaVersion := "2.13.12"
 )
 
-val scalaTest = "org.scalatest" %% "scalatest" % "3.2.17" % Test
+val scalaTest = "org.scalatest" %% "scalatest" % "3.2.18" % Test
 
 lazy val rootProject = (project in file("."))
   .settings(commonSettings: _*)
