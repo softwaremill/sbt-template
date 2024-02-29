@@ -2,7 +2,7 @@ import com.softwaremill.SbtSoftwareMillCommon.commonSmlBuildSettings
 
 lazy val commonSettings = commonSmlBuildSettings ++ Seq(
   organization := "com.softwaremill.xxx",
-  scalaVersion := "2.13.12"
+  scalaVersion := "2.13.13"
 )
 
 val scalaTest = "org.scalatest" %% "scalatest" % "3.2.18" % Test
