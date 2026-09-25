@@ -3,7 +3,7 @@ import com.softwaremill.SbtSoftwareMillCommon.commonSmlBuildSettings
 commonSmlBuildSettings
 
 organization := "com.softwaremill.xxx"
-scalaVersion := "2.13.12"
+scalaVersion := "2.13.18"
 
 val scalaTest = "org.scalatest" %% "scalatest" % "3.2.19" % Test
 
